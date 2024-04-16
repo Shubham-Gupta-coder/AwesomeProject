@@ -11,6 +11,8 @@ import {
   TouchableOpacity,
 } from "react-native";
 import axios from "axios";
+import { Image } from "react-native";
+
 
 const NewsSummarizer = () => {
   const [query, setQuery] = useState(""); // State for user query
@@ -46,6 +48,11 @@ const NewsSummarizer = () => {
 
   const renderArticle = ({ item }) => (
     <View style={styles.article}>
+      <Image
+        source={{ uri: item.image }}
+        style={styles.image}
+        resizeMode={"cover"}
+      />
       <Text style={styles.articleTitle}>{item.title}</Text>
       <Text style={styles.articleBody}>{item.body}</Text>
       <TouchableOpacity // Optional: Style the button
@@ -126,6 +133,8 @@ const styles = StyleSheet.create({
     color: "#000",
     fontWeight: "bold",
     padding: 5,
+    marginTop: 20,
+    marginBottom: 15,
   },
   articleBody: {
     color: "#555",
@@ -138,6 +147,12 @@ const styles = StyleSheet.create({
   },
   loading: {
     marginBottom: 10,
+  },
+  image: {
+    width: 'full',
+    height: 150,
+    resizeMode: "cover", // Or 'contain', etc.
+    borderRadius: 10,
   },
 });
 
