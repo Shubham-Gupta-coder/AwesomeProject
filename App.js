@@ -53,20 +53,30 @@ const NewsSummarizer = () => {
         style={styles.image}
         resizeMode={"cover"}
       />
+      <Text style={styles.articleDate}>{item.date.substring(0, 10)}</Text>
       <Text style={styles.articleTitle}>{item.title}</Text>
       <Text style={styles.articleBody}>{item.body}</Text>
       <TouchableOpacity // Optional: Style the button
         onPress={() => Linking.openURL(item.url)}
-        style={{ backgroundColor: "#A994F8", padding: 10, borderRadius: 10 }}
+        style={{
+          backgroundColor: "#A994F8",
+          padding: 10,
+          width: 150,
+          borderRadius: 10,
+        }}
       >
-        <Text>Read Full Article</Text>
+        <Text
+          style={{ textAlign: "center", color: "white", fontWeight: "bold" }}
+        >
+          Read Full Article
+        </Text>
       </TouchableOpacity>
     </View>
   );
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>News Summarizer</Text>
+      <Text style={styles.title}>GlobeShorts</Text>
       <SearchBar query={query} setQuery={setQuery} />
       <TouchableOpacity
         style={{ padding: 12, backgroundColor: "#A994F8", borderRadius: 20 }}
@@ -83,6 +93,7 @@ const NewsSummarizer = () => {
           renderItem={renderArticle}
           keyExtractor={(item) => item.url}
           style={styles.articleList}
+
         />
       )}
     </View>
@@ -129,30 +140,41 @@ const styles = StyleSheet.create({
     borderWidth: 5,
   },
   articleTitle: {
-    fontSize: 24,
+    fontSize: 22,
     color: "#000",
     fontWeight: "bold",
-    padding: 5,
-    marginTop: 20,
     marginBottom: 15,
+    marginTop:10
+  },
+  articleDate: {
+    fontSize: 12,
+    color: "#000",
+    padding: 5,
+    backgroundColor: "#D7CEF8",
+    width: 80,
+    textAlign: "center",
+    marginTop: 20,
+    borderRadius: 20,
   },
   articleBody: {
     color: "#555",
     marginBottom: 15,
+    fontSize: 18,
   },
   articleList: {
     marginTop: 10,
-    padding: 20,
+    // padding: 20,
     borderRadius: 10,
   },
   loading: {
     marginBottom: 10,
   },
   image: {
-    width: 'full',
-    height: 150,
-    resizeMode: "cover", // Or 'contain', etc.
+    width: "full",
+    height: 250,
+    resizeMode: "contain", // Or 'contain', etc.
     borderRadius: 10,
+
   },
 });
 
